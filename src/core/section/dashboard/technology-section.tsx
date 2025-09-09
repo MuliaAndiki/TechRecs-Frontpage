@@ -49,7 +49,6 @@ const TechnologySection = () => {
                 </Box>
                 <Box className="flex justify-center items-center gap-4">
                   <Box className="flex justify-start items-start flex-col">
-                    {/* Default */}
                     <Label className="text-2xl font-bold">123.5+</Label>
                     <Label className="text-lg font-light">Device</Label>
                   </Box>

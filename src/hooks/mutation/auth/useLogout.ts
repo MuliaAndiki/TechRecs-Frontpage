@@ -1,40 +1,37 @@
 import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAlert } from '../../use-alert';
-import { useRouter } from 'next/navigation';
 import Api from '@/src/service/props.service';
+import { useRouter } from 'next/navigation';
+import { logout } from '@/src/stores/authSlice/authSlice';
 import { useAppDispatch } from '../../dispatch/dispatch';
-import { userSchema } from '@/src/types/api';
-import { setCurrentUser } from '@/src/stores/authSlice/authSlice';
 
-export const useLogin = () => {
-  const dispatch = useAppDispatch();
+export default function useLogout() {
   const alert = useAlert();
+  const dispatch = useAppDispatch();
+  const queryClient = useQueryClient();
   const router = useRouter();
   return useMutation<TResponse<any>, Error, any>({
-    mutationFn: ({ payload }) => Api.auth.Login(payload),
+    mutationFn: () => Api.auth.Logout(),
     onSuccess: (res) => {
-      const payload: userSchema = {
-        user: res.data,
-      };
-      dispatch(setCurrentUser(payload));
-
       alert.toast({
         title: 'Succes',
-        message: 'Succes Login',
+        message: 'Logout Succes',
         icon: 'success',
         onVoid: () => {
-          router.push('/home');
+          queryClient.clear();
+
+          router.push('/');
         },
       });
     },
     onError: (err) => {
-      console.log(err);
+      console.error(err);
       alert.toast({
         title: 'Failed',
-        message: 'Failed Login',
+        message: 'Logout Failed',
         icon: 'error',
       });
     },
   });
-};
+}

@@ -8,6 +8,7 @@ import { SosmedApp } from '@/src/config/app.config';
 import { Button } from '@/src/components/ui/button';
 import { useIsMobile } from '@/src/hooks/use-mobile';
 import { usePathname } from 'next/navigation';
+import { SidebarTrigger } from '@/src/components/ui/sidebar';
 
 export default function HeaderApp() {
   const Mobile = useIsMobile();
@@ -17,7 +18,10 @@ export default function HeaderApp() {
   return (
     <nav>
       <div className="flex justify-between items-center w-full p-2">
-        <Label className="text-lg font-bold">TechRecs</Label>
+        <Box className="flex">
+          <Label className="text-lg font-bold">TechRecs</Label>
+          <SidebarTrigger />
+        </Box>
         <Box className="flex justify-center items-center gap-4">
           {!Mobile ||
             (hidden.includes(pathname) && (
