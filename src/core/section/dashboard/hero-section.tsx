@@ -21,7 +21,7 @@ const DashboardHeroSection = () => {
             personalized recommendations based on your budget, needs, and preferences, so you can
             make confident choices without endless browsing.
           </Label>
-          <Box className="flex justify-center items-center gap-4">
+          <Box className="flex justify-center items-center gap-4 ">
             <Link href="/login">
               <Button variant="linear" className="h-auto">
                 Get started

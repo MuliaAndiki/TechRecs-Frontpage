@@ -8,3 +8,7 @@ export interface FormRegisterType {
   password: string;
   fullName: string;
 }
+
+export interface RequestType {
+  params: string;
+}

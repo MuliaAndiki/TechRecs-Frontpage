@@ -12,7 +12,7 @@ import { SidebarProvider } from '@/src/components/ui/sidebar';
 import { composeProviders } from './composeProviders';
 
 const Providers = composeProviders([
-  SidebarProvider,
+  ({ children }) => <SidebarProvider defaultOpen={false}>{children}</SidebarProvider>,
   ({ children }) => <Provider store={store}>{children}</Provider>,
   ({ children }) => <PersistGate persistor={persistor}>{children}</PersistGate>,
   ThemeProvider,

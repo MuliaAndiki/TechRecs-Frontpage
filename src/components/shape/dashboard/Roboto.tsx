@@ -8,8 +8,8 @@ import View from '../../ui/View';
 import { MarqueApp } from '@/src/config/components.config';
 const Roboto = () => {
   return (
-    <View className="absolute bottom-0 w-full flex justify-center items-center flex-col">
-      <Box className="  w-[70%] z-[-4] overflow-hidden ">
+    <View className="absolute z-[-5] bottom-0 w-full flex justify-center items-center flex-col">
+      <Box className="  w-[70%]  overflow-hidden ">
         <Shape className="w-70 h-70 rounded-full bg-[var(--shapeV1-parent)]/40 right-0 -translate-x-35 translate-y-20 blur-3xl z-[-5]" />
         <Shape className="w-70 h-70 rounded-full bg-[var(--shapeV1-child)]/40 z-[-5] translate-x-35 blur-3xl translate-y-20" />
         <Shape className="w-70 h-70 rounded-full bg-[#E8BAC0]/40  left-1/2 -translate-x-40 translate-y-20 z-[-5] blur-3xl " />
