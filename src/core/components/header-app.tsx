@@ -14,13 +14,14 @@ export default function HeaderApp() {
   const Mobile = useIsMobile();
   const pathname = usePathname();
   const hidden = ['/login'];
+  const show = ['/home'];
 
   return (
     <nav>
       <div className="flex justify-between items-center w-full p-2">
         <Box className="flex">
           <Label className="text-lg font-bold">TechRecs</Label>
-          <SidebarTrigger />
+          {show.includes(pathname) && <SidebarTrigger />}
         </Box>
         <Box className="flex justify-center items-center gap-4">
           {!Mobile ||
