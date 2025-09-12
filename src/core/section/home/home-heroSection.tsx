@@ -2,8 +2,7 @@ import Box from '@/src/components/ui/Box';
 import View from '@/src/components/ui/View';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { Input } from '@/src/components/ui/input';
-import { RequestType } from '@/src/types/form';
-import { useState } from 'react';
+import { PromptType } from '@/src/types/form';
 import { InteractiveGridPattern } from '@/src/components/magicui/interactive-grid-pattern';
 import { cn } from '@/src/lib/utils';
 import DropDown from '../../components/drop-down';
@@ -11,10 +10,19 @@ import { Button } from '@/src/components/ui/button';
 import Image from 'next/image';
 import Shape from '@/src/components/ui/Shape';
 
-const HomeHeroSection = () => {
-  const [formRequest, setFormRequest] = useState<RequestType>({
-    params: '',
-  });
+interface HeroHomeType {
+  formRequest: PromptType;
+  setFormRequest: React.Dispatch<React.SetStateAction<PromptType>>;
+  onGenerate: () => void;
+  isPending: boolean;
+}
+
+const HomeHeroSection: React.FC<HeroHomeType> = ({
+  formRequest,
+  onGenerate,
+  setFormRequest,
+  isPending,
+}) => {
   return (
     <View>
       <Box className="flex min-h-screen  justify-center items-center relative z-0">
@@ -37,19 +45,28 @@ const HomeHeroSection = () => {
           <Box className="relative w-full flex justify-center items-center flex-col max-w-2/3 gap-4">
             <Label className="text-5xl font-extrabold">TechRecs</Label>
             <Label className="text-2xl font-light">Search Your Next Device With TechRecs </Label>
-            <Input
-              placeholder="Find Your Device"
-              name={formRequest.params}
-              value={formRequest.params}
-              className="w-full"
-              onChange={(e) =>
-                setFormRequest((prev) => {
-                  const newObj = { ...prev, params: e.target.value };
-                  return newObj;
-                })
-              }
-            />
-            <DropDown title="Settings" className="absolute" subTitle="knowledge" />
+            <Box className="w-full flex justify-center items-center gap-4">
+              <Input
+                placeholder="Find Your Device"
+                name={formRequest.prompt}
+                value={formRequest.prompt}
+                className="w-full"
+                onChange={(e) =>
+                  setFormRequest((prev) => {
+                    const newObj = { ...prev, prompt: e.target.value };
+                    return newObj;
+                  })
+                }
+              />
+              <DropDown
+                title="Settings"
+                className="absolute -translate-x-23"
+                subTitle="knowledge"
+              />
+              <Button variant="glass" onClick={() => onGenerate()} disabled={isPending}>
+                Search
+              </Button>
+            </Box>
           </Box>
           <Box className="mt-2 z-0 flex gap-2">
             <Button variant="glass" className="">
