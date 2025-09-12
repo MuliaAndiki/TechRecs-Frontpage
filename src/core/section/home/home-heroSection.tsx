@@ -2,117 +2,86 @@ import Box from '@/src/components/ui/Box';
 import View from '@/src/components/ui/View';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { Input } from '@/src/components/ui/input';
-import { RequestType } from '@/src/types/form';
-import { useState } from 'react';
+import { PromptType } from '@/src/types/form';
 import { InteractiveGridPattern } from '@/src/components/magicui/interactive-grid-pattern';
 import { cn } from '@/src/lib/utils';
+import DropDown from '../../components/drop-down';
 import { Button } from '@/src/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu';
+import Image from 'next/image';
+import Shape from '@/src/components/ui/Shape';
 
-const HomeHeroSection = () => {
-  const [formRequest, setFormRequest] = useState<RequestType>({
-    params: '',
-  });
+interface HeroHomeType {
+  formRequest: PromptType;
+  setFormRequest: React.Dispatch<React.SetStateAction<PromptType>>;
+  onGenerate: () => void;
+  isPending: boolean;
+}
+
+const HomeHeroSection: React.FC<HeroHomeType> = ({
+  formRequest,
+  onGenerate,
+  setFormRequest,
+  isPending,
+}) => {
   return (
     <View>
-      <Box className="flex min-h-screen justify-center items-center relative  ">
-        <Box className="absolute z-0 inset-0">
-          <InteractiveGridPattern
-            className={cn(
-              '[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
-              'absolute right-0 h-full translate-x-2/5 w-full z-[-1] '
-            )}
-          />
-          <InteractiveGridPattern
-            className={cn(
-              '[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
-              'absolute left-0 h-full rotate-180 -translate-x-2/5 w-full z-[-1] '
-            )}
-          />
-        </Box>
-        <Box className="relative w-full flex justify-center items-center flex-col max-w-2/3 gap-4">
-          <Label className="text-5xl font-extrabold">TechRecs</Label>
-          <Input
-            placeholder="Find Your Device"
-            name={formRequest.params}
-            value={formRequest.params}
-            className="w-full"
-            onChange={(e) =>
-              setFormRequest((prev) => {
-                const newObj = { ...prev, params: e.target.value };
-                return newObj;
-              })
-            }
-          />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="absolute right-2 bottom-0 -translate-y-2.5  text-muted-foreground text-sm">
-                Settings
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="start">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  Profile
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Billing
-                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Settings
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Keyboard shortcuts
-                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem>Email</DropdownMenuItem>
-                      <DropdownMenuItem>Message</DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>More...</DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-                <DropdownMenuItem>
-                  New Team
-                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>GitHub</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuItem disabled>API</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                Log out
-                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+      <Box className="flex min-h-screen  justify-center items-center relative z-0">
+        <Shape className="w-150 h-150 bg-[var(--shapeV1-parent)]/70 rounded-full blur-[600px] z-[-6] top-0 -translate-y-70 " />
+        <Box className="flex justify-center items-center flex-col w-full">
+          <Box className="absolute z-0 inset-0">
+            <InteractiveGridPattern
+              className={cn(
+                '[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
+                'absolute right-0 h-full translate-x-2/5 w-full z-[-1] '
+              )}
+            />
+            <InteractiveGridPattern
+              className={cn(
+                '[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
+                'absolute left-0 h-full rotate-180 -translate-x-2/5 w-full z-[-1] '
+              )}
+            />
+          </Box>
+          <Box className="relative w-full flex justify-center items-center flex-col max-w-2/3 gap-4">
+            <Label className="text-5xl font-extrabold">TechRecs</Label>
+            <Label className="text-2xl font-light">Search Your Next Device With TechRecs </Label>
+            <Box className="w-full flex justify-center items-center gap-4">
+              <Input
+                placeholder="Find Your Device"
+                name={formRequest.prompt}
+                value={formRequest.prompt}
+                className="w-full"
+                onChange={(e) =>
+                  setFormRequest((prev) => {
+                    const newObj = { ...prev, prompt: e.target.value };
+                    return newObj;
+                  })
+                }
+              />
+              <DropDown
+                title="Settings"
+                className="absolute -translate-x-23"
+                subTitle="knowledge"
+              />
+              <Button variant="glass" onClick={() => onGenerate()} disabled={isPending}>
+                Search
+              </Button>
+            </Box>
+          </Box>
+          <Box className="mt-2 z-0 flex gap-2">
+            <Button variant="glass" className="">
+              <Box className="flex justify-center items-center gap-2">
+                <Image alt="AI" src="/asset/GeminiV1.svg" width={30} height={30} />
+                <Label className="font-extrabold">Gemini</Label>
+              </Box>
+            </Button>
+            <Button className="" variant="glass">
+              <Box className="flex justify-center items-center gap-2">
+                <Image alt="AI" src="/asset/deepseekV1.svg" width={30} height={30} />
+                <Label className="font-extrabold">Deepseek</Label>
+              </Box>
+            </Button>
+          </Box>
         </Box>
       </Box>
     </View>

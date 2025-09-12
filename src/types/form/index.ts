@@ -9,6 +9,6 @@ export interface FormRegisterType {
   fullName: string;
 }
 
-export interface RequestType {
-  params: string;
+export interface PromptType {
+  prompt: string;
 }

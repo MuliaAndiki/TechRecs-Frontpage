@@ -114,3 +114,12 @@ export interface MarqueType {
   image?: string;
   title?: string;
 }
+
+export interface DropdownType {
+  children?: React.ReactNode;
+  title?: string;
+  subTitle?: string;
+  menuItem?: [string];
+  shortcutItem?: [string];
+  className?: string;
+}

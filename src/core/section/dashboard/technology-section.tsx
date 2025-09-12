@@ -29,7 +29,7 @@ const TechnologySection = () => {
                 </Label>
               </Box>
               <Box className="w-full flex justify-between items-center">
-                <Label className="text-2xl w-full max-w-50">Workflow With GEMINI AI Tools</Label>
+                <Label className="text-2xl w-full max-w-50">Workflow With LLM AI Tools</Label>
                 <Box className="flex justify-center items-center gap-2 flex-col">
                   <AvatarCircles numPeople={99} avatarUrls={Avatars} />
                   <Box className="flex justify-center items-start  gap-2 ">
