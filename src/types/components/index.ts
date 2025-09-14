@@ -123,3 +123,9 @@ export interface DropdownType {
   shortcutItem?: [string];
   className?: string;
 }
+
+export interface ResponType {
+  _id: string;
+  prompt: string;
+  response: string;
+}

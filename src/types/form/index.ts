@@ -10,5 +10,7 @@ export interface FormRegisterType {
 }
 
 export interface PromptType {
+  _id?: string;
   prompt: string;
+  response?: string;
 }
