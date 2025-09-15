@@ -129,3 +129,8 @@ export interface ResponType {
   prompt: string;
   response: string;
 }
+
+export interface ChatType {
+  sender: 'user' | 'ai';
+  text: string;
+}

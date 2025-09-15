@@ -31,3 +31,17 @@ export function flattenToFormData(obj: Record<string, any>, form?: FormData): Fo
   flatten(obj);
   return formData;
 }
+
+export function cleanObject<T extends Record<string, any>>(obj: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(obj)
+      .filter(([_, v]) => {
+        if (Array.isArray(v)) return v.length > 0;
+        if (typeof v === 'object' && v !== null) return Object.keys(v).length > 0;
+        if (typeof v === 'string') return v.trim() !== '';
+        if (typeof v === 'number') return v !== 0;
+        return v !== undefined && v !== null;
+      })
+      .map(([k, v]) => [k, typeof v === 'object' && !Array.isArray(v) ? cleanObject(v) : v])
+  ) as Partial<T>;
+}

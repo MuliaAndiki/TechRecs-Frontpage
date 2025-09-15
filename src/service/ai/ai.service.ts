@@ -14,6 +14,10 @@ class AiApi {
     const res = await AxiosClient.get('/api/ai/getAll');
     return res.data;
   }
+  async getByUser(id: string): Promise<TResponse<any>> {
+    const res = await AxiosClient.get(`/api/ai/getByUser/${id}`);
+    return res.data;
+  }
 }
 
 export default new AiApi();
