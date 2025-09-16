@@ -3,18 +3,33 @@ import View from '@/src/components/ui/View';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import { Input } from '@/src/components/ui/input';
 import { PromptType } from '@/src/types/form';
-import { InteractiveGridPattern } from '@/src/components/magicui/interactive-grid-pattern';
-import { cn } from '@/src/lib/utils';
 import DropDown from '../../components/drop-down';
 import { Button } from '@/src/components/ui/button';
 import Image from 'next/image';
-import Shape from '@/src/components/ui/Shape';
+import ReactMarkdown from 'react-markdown';
+import Threads from '@/src/components/Threads';
+import { useMemo } from 'react';
+import { ChatType } from '@/src/types/components';
+import Fallback from '@/src/components/ui/Fallback';
+import PopUp from '../../components/pop-up';
+import { IconX } from '@tabler/icons-react';
+import { SosmedApp } from '@/src/config/app.config';
+import Link from 'next/link';
+import UseTooltip from '../../components/tooltip';
 
 interface HeroHomeType {
   formRequest: PromptType;
   setFormRequest: React.Dispatch<React.SetStateAction<PromptType>>;
   onGenerate: () => void;
   isPending: boolean;
+  name: any;
+  typingText: string | null;
+  isTyping: boolean;
+  aiResponse: any;
+  chatHistory: ChatType[];
+  onLogout: () => void;
+  isPopUp: 'knowledge' | null;
+  setIsPopUp: React.Dispatch<React.SetStateAction<'knowledge' | null>>;
 }
 
 const HomeHeroSection: React.FC<HeroHomeType> = ({
@@ -22,65 +37,142 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
   onGenerate,
   setFormRequest,
   isPending,
+  aiResponse,
+  name,
+  isTyping,
+  typingText,
+  chatHistory,
+  onLogout,
+  isPopUp,
+  setIsPopUp,
 }) => {
+  const bg = useMemo(
+    () => (
+      <div style={{ width: '100%', height: '600px', position: 'absolute' }}>
+        <Threads amplitude={1} distance={0} enableMouseInteraction={true} />
+      </div>
+    ),
+    []
+  );
   return (
     <View>
       <Box className="flex min-h-screen  justify-center items-center relative z-0">
-        <Shape className="w-150 h-150 bg-[var(--shapeV1-parent)]/70 rounded-full blur-[600px] z-[-6] top-0 -translate-y-70 " />
         <Box className="flex justify-center items-center flex-col w-full">
-          <Box className="absolute z-0 inset-0">
-            <InteractiveGridPattern
-              className={cn(
-                '[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
-                'absolute right-0 h-full translate-x-2/5 w-full z-[-1] '
-              )}
-            />
-            <InteractiveGridPattern
-              className={cn(
-                '[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
-                'absolute left-0 h-full rotate-180 -translate-x-2/5 w-full z-[-1] '
-              )}
-            />
-          </Box>
-          <Box className="relative w-full flex justify-center items-center flex-col max-w-2/3 gap-4">
-            <Label className="text-5xl font-extrabold">TechRecs</Label>
-            <Label className="text-2xl font-light">Search Your Next Device With TechRecs </Label>
-            <Box className="w-full flex justify-center items-center gap-4">
-              <Input
-                placeholder="Find Your Device"
-                name={formRequest.prompt}
-                value={formRequest.prompt}
-                className="w-full"
-                onChange={(e) =>
-                  setFormRequest((prev) => {
-                    const newObj = { ...prev, prompt: e.target.value };
-                    return newObj;
-                  })
-                }
-              />
-              <DropDown
-                title="Settings"
-                className="absolute -translate-x-23"
-                subTitle="knowledge"
-              />
-              <Button variant="glass" onClick={() => onGenerate()} disabled={isPending}>
-                Search
-              </Button>
+          {bg}
+          <Box className="relative w-full flex justify-center items-center flex-col max-w-2/3 gap-4   rounded-lg">
+            {aiResponse ? (
+              <Box className="rounded-md my-2 w-full">
+                <Box className="w-full flex justify-center items-center">
+                  <Label className="text-4xl font-extrabold text-[var(--shapeV1-parent)]">
+                    TechRecs
+                  </Label>
+                </Box>
+                <Box className="flex flex-col gap-3 px-2 py-2">
+                  {chatHistory.map((items, key) => {
+                    const lastChat = key === chatHistory.length - 1;
+                    return (
+                      <Box
+                        key={key}
+                        className={`flex ${
+                          items.sender === 'user' ? 'justify-end' : 'justify-start'
+                        } mb-2`}
+                      >
+                        {items.sender === 'user' && (
+                          <Label
+                            key={key}
+                            className=" text-lg font-semibold p-3 rounded-xl bg-foreground/20 text-end  max-w-[80%] break-words "
+                          >
+                            {name?.fullName}: {items.text}
+                          </Label>
+                        )}
+                        {items.sender === 'ai' && (
+                          <Box className=" text-lg font-semibold p-3 rounded-xl bg-foreground/20  self-start max-w-[80%] break-words">
+                            <ReactMarkdown>
+                              {lastChat && isTyping ? typingText + '|' : items.text}
+                            </ReactMarkdown>
+                          </Box>
+                        )}
+                      </Box>
+                    );
+                  })}
+                </Box>
+              </Box>
+            ) : (
+              <Box className="w-full flex justify-center items-center flex-col h-full ">
+                <Label className="text-5xl font-extrabold">TechRecs</Label>
+                <Label className="text-2xl font-light">Search Your Next Device With TechRecs</Label>
+                <Box className="absolute bottom-0 translate-y-50 right-0 translate-x-50">
+                  <Box className="flex  items-center gap-4">
+                    {SosmedApp.map((items, key) => (
+                      <Link href={items.params} key={key}>
+                        <UseTooltip content={items.name}>
+                          <Button variant="ghost">
+                            <items.icon className="size-5" />
+                          </Button>
+                        </UseTooltip>
+                      </Link>
+                    ))}
+                  </Box>
+                </Box>
+              </Box>
+            )}
+
+            <Box className="w-full flex  sticky items-center bottom-10 p-4 z-50 flex-col">
+              <Box className="flex w-full justify-center items-center gap-4 relative">
+                <Input
+                  placeholder="Find Your Device"
+                  name={formRequest.prompt.text!}
+                  value={formRequest.prompt.text!}
+                  className="w-full"
+                  onChange={(e) =>
+                    setFormRequest((prev) => ({
+                      ...prev,
+                      prompt: {
+                        ...prev.prompt,
+                        text: e.target.value,
+                      },
+                    }))
+                  }
+                />
+                <DropDown
+                  title="Settings"
+                  className="absolute -translate-x-25 "
+                  subTitle="Knowledge"
+                  isPending={isPending}
+                  onLogout={() => onLogout()}
+                  isPopUp={isPopUp}
+                  setIsPopUp={setIsPopUp}
+                />
+                <Button variant="glass" onClick={() => onGenerate()} disabled={isPending}>
+                  {isPending ? <Fallback title="Wait" /> : 'Search'}
+                </Button>
+              </Box>
+
+              <Box className="mt-2 z-0 flex gap-2">
+                <Button variant="glass" className="">
+                  <Box className="flex justify-center items-center gap-2">
+                    <Image alt="AI" src="/asset/GeminiV1.svg" width={30} height={30} />
+                    <Label className="font-extrabold">Gemini</Label>
+                  </Box>
+                </Button>
+                <Button className="" variant="glass">
+                  <Box className="flex justify-center items-center gap-2">
+                    <Image alt="AI" src="/asset/deepseekV1.svg" width={30} height={30} />
+                    <Label className="font-extrabold">Deepseek</Label>
+                  </Box>
+                </Button>
+              </Box>
             </Box>
-          </Box>
-          <Box className="mt-2 z-0 flex gap-2">
-            <Button variant="glass" className="">
-              <Box className="flex justify-center items-center gap-2">
-                <Image alt="AI" src="/asset/GeminiV1.svg" width={30} height={30} />
-                <Label className="font-extrabold">Gemini</Label>
-              </Box>
-            </Button>
-            <Button className="" variant="glass">
-              <Box className="flex justify-center items-center gap-2">
-                <Image alt="AI" src="/asset/deepseekV1.svg" width={30} height={30} />
-                <Label className="font-extrabold">Deepseek</Label>
-              </Box>
-            </Button>
+            <PopUp isOpen={isPopUp === 'knowledge'} onClose={() => setIsPopUp!(null)}>
+              <View className="w-full h-auto">
+                <Box className="flex justify-between items-center">
+                  <Label className="text-lg font-bold">Settings Knowledge</Label>
+                  <Button variant={'glass'} onClick={() => setIsPopUp!(null)}>
+                    <IconX />
+                  </Button>
+                </Box>
+              </View>
+            </PopUp>
           </Box>
         </Box>
       </Box>

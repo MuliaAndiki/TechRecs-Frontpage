@@ -15,6 +15,7 @@ export default function HeaderApp() {
   const pathname = usePathname();
   const hidden = ['/login'];
   const show = ['/home'];
+  const hiddenToggle = ['/home'];
 
   return (
     <nav>
@@ -43,7 +44,7 @@ export default function HeaderApp() {
               </Button>
             </Link>
           ))}
-          <ToggleTheme />
+          {!hiddenToggle.includes(pathname) && <ToggleTheme />}
         </Box>
       </div>
     </nav>

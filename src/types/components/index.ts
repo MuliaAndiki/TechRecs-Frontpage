@@ -1,5 +1,3 @@
-import { string } from 'zod';
-
 export interface CardBoardType {
   image: string;
   top: {
@@ -122,4 +120,15 @@ export interface DropdownType {
   menuItem?: [string];
   shortcutItem?: [string];
   className?: string;
+}
+
+export interface ResponType {
+  _id: string;
+  prompt: string;
+  response: string;
+}
+
+export interface ChatType {
+  sender: 'user' | 'ai';
+  text: string;
 }

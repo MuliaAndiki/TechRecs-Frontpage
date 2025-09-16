@@ -12,11 +12,11 @@ const DashboardHeroSection = () => {
       <Box className="flex min-h-screen justify-center items-center relative z-0 overflow-x-hidden ">
         <Ball />
         <Box className="flex justify-center -translate-y-[50px] items-center flex-col  gap-4 w-full max-w-[1000px] text-center">
-          <Label className="text-6xl font-bold bg-gradient-to-r from-[#C30EFF] via-[#E8BAC0] to-[#471EFF] bg-clip-text text-transparent">
+          <Label className="text-3xl lg:text-6xl font-bold bg-gradient-to-r from-[#C30EFF] via-[#E8BAC0] to-[#471EFF] bg-clip-text text-transparent">
             Find the Perfect Laptop & Phone with TechRecs
           </Label>
-          <Label className="text-5xl font-bold">AI Scalable</Label>
-          <Label className="text-lg w-full max-w-[800px] text-center">
+          <Label className="text-2xl lg:text-5xl font-bold">AI Scalable</Label>
+          <Label className="text-sm lg:text-lg w-full max-w-[800px] text-center">
             TechRecs helps you find the perfect laptop or smartphone quickly and easily. Get
             personalized recommendations based on your budget, needs, and preferences, so you can
             make confident choices without endless browsing.

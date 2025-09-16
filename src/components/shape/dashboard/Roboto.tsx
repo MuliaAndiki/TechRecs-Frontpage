@@ -8,11 +8,11 @@ import View from '../../ui/View';
 import { MarqueApp } from '@/src/config/components.config';
 const Roboto = () => {
   return (
-    <View className="absolute z-[-5] bottom-0 w-full flex justify-center items-center flex-col">
+    <View className="absolute z-[-5] bottom-0 lg:w-full flex justify-center items-center flex-col">
       <Box className="  w-[70%]  overflow-hidden ">
-        <Shape className="w-70 h-70 rounded-full bg-[var(--shapeV1-parent)]/40 right-0 -translate-x-35 translate-y-20 blur-3xl z-[-5]" />
-        <Shape className="w-70 h-70 rounded-full bg-[var(--shapeV1-child)]/40 z-[-5] translate-x-35 blur-3xl translate-y-20" />
-        <Shape className="w-70 h-70 rounded-full bg-[#E8BAC0]/40  left-1/2 -translate-x-40 translate-y-20 z-[-5] blur-3xl " />
+        <Shape className="w-30 h-30 lg:w-70 lg:h-70 rounded-full bg-[var(--shapeV1-parent)]/40  lg:right-0 translate-x-80 translate-y-5  lg:-translate-x-75 lg:translate-y-17 blur-xl lg:blur-3xl z-[-5]" />
+        <Shape className="w-30 h-30 lg:w-70 lg:h-70 rounded-full bg-[var(--shapeV1-child)]/40 z-[-5] translate-x-18 lg:translate-x-35 blur-xl lg:blur-3xl translate-y-5 lg:translate-y-20" />
+        <Shape className="w-30 h-30 lg:w-70 lg:h-70 rounded-full bg-[#E8BAC0]/40 left-1/2 lg:left-1/2 -translate-x-17  lg:-translate-x-40 translate-y-3 lg:translate-y-20 z-[-5] blur-xl lg:blur-3xl " />
         <Robot />
       </Box>
 
