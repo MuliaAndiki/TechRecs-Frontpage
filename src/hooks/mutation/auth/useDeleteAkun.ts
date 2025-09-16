@@ -1,26 +1,24 @@
 import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useAlert } from '../../use-alert';
 import Api from '@/src/service/props.service';
+import { useAlert } from '../../use-alert';
 import { useRouter } from 'next/navigation';
-import { logout } from '@/src/stores/authSlice/authSlice';
-import { useAppDispatch } from '../../dispatch/dispatch';
 
-export default function useLogout() {
+export default function useDeleteAkun(options?: { onAfterSuccess?: () => void }) {
   const alert = useAlert();
-  const dispatch = useAppDispatch();
-  const queryClient = useQueryClient();
   const router = useRouter();
+  const queryClient = useQueryClient();
   return useMutation<TResponse<any>, Error, any>({
-    mutationFn: () => Api.auth.Logout(),
+    mutationFn: () => Api.auth.Delete(),
     onSuccess: (res) => {
       alert.toast({
-        title: 'Succes',
-        message: 'Logout Succes',
+        title: 'Succesfuly',
+        message: 'Delete Akun Succesfuly',
         icon: 'success',
         onVoid: () => {
+          options?.onAfterSuccess?.();
+          router.push('/login');
           queryClient.clear();
-          router.push('/');
         },
       });
     },
@@ -28,7 +26,7 @@ export default function useLogout() {
       console.error(err);
       alert.toast({
         title: 'Failed',
-        message: 'Logout Failed',
+        message: 'Delete Akun Failed',
         icon: 'error',
       });
     },

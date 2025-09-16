@@ -19,6 +19,10 @@ class AuthApi {
     const res = await AxiosClient.get('/api/auth/getProfile');
     return res.data;
   }
+  async Delete(): Promise<TResponse<any>> {
+    const res = await AxiosClient.delete('/api/auth/delete');
+    return res.data;
+  }
 }
 
 export default new AuthApi();

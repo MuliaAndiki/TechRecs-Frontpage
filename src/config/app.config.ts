@@ -29,14 +29,17 @@ export const SosmedApp: SosmedType[] = [
   {
     icon: IconBrandGithub,
     params: 'https://github.com/MuliaAndiki',
+    name: 'Github',
   },
   {
     icon: IconBrandDiscord,
     params: '#',
+    name: 'Discord',
   },
   {
     icon: IconBrandTiktok,
     params: 'https://www.tiktok.com/@dikzzycde',
+    name: 'Tiktok',
   },
 ];
 

@@ -6,6 +6,7 @@ export interface NavbarType {
 export interface SosmedType {
   icon: any;
   params: string;
+  name?: string;
 }
 
 export interface FooterType {

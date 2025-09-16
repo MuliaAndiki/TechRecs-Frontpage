@@ -12,6 +12,7 @@ import useGetAll from '@/src/hooks/mutation/ai/useGetAll';
 import useGetProfile from '@/src/hooks/mutation/auth/useGetProfile';
 import { cleanObject } from '@/src/utils/formdata';
 import { ChatType } from '@/src/types/components';
+import useLogout from '@/src/hooks/mutation/auth/useLogout';
 
 const HomeContainer = () => {
   // const currentData = useAppSelector((state) => state.auth.currentUser?.user.role);
@@ -111,9 +112,14 @@ const HomeContainer = () => {
   const [chatHistory, setChatHistory] = useState<ChatType[]>([]);
   const getProfile = useGetProfile();
   const name = getProfile.data?.data;
+  const [isPopUp, setIsPopUp] = useState<'knowledge' | null>(null);
+
   const [typingText, setTypingText] = useState<string | null>('');
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [aiResponse, setAiResponse] = useState<PromptType | null>(null);
+
+  const { mutate: logout, isPending } = useLogout();
+  const handleLogout = () => logout({});
 
   const simulateTyping = (fullText: string) => {
     setTypingText('');
@@ -174,6 +180,9 @@ const HomeContainer = () => {
         isTyping={isTyping}
         typingText={typingText}
         chatHistory={chatHistory}
+        onLogout={handleLogout}
+        isPopUp={isPopUp}
+        setIsPopUp={setIsPopUp}
       />
     </Container>
   );

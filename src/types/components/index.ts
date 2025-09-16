@@ -1,5 +1,3 @@
-import { string } from 'zod';
-
 export interface CardBoardType {
   image: string;
   top: {

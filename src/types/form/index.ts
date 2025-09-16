@@ -60,7 +60,6 @@ export interface PromptType {
         purpose?: string;
       };
 
-      // Phone-specific
       phone?: {
         processor?: {
           brand?: string;

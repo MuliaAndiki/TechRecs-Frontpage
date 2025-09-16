@@ -11,6 +11,11 @@ import Threads from '@/src/components/Threads';
 import { useMemo } from 'react';
 import { ChatType } from '@/src/types/components';
 import Fallback from '@/src/components/ui/Fallback';
+import PopUp from '../../components/pop-up';
+import { IconX } from '@tabler/icons-react';
+import { SosmedApp } from '@/src/config/app.config';
+import Link from 'next/link';
+import UseTooltip from '../../components/tooltip';
 
 interface HeroHomeType {
   formRequest: PromptType;
@@ -22,6 +27,9 @@ interface HeroHomeType {
   isTyping: boolean;
   aiResponse: any;
   chatHistory: ChatType[];
+  onLogout: () => void;
+  isPopUp: 'knowledge' | null;
+  setIsPopUp: React.Dispatch<React.SetStateAction<'knowledge' | null>>;
 }
 
 const HomeHeroSection: React.FC<HeroHomeType> = ({
@@ -34,6 +42,9 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
   isTyping,
   typingText,
   chatHistory,
+  onLogout,
+  isPopUp,
+  setIsPopUp,
 }) => {
   const bg = useMemo(
     () => (
@@ -48,9 +59,14 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
       <Box className="flex min-h-screen  justify-center items-center relative z-0">
         <Box className="flex justify-center items-center flex-col w-full">
           {bg}
-          <Box className="relative w-full flex justify-center items-center flex-col max-w-2/3 gap-4  rounded-lg">
+          <Box className="relative w-full flex justify-center items-center flex-col max-w-2/3 gap-4   rounded-lg">
             {aiResponse ? (
               <Box className="rounded-md my-2 w-full">
+                <Box className="w-full flex justify-center items-center">
+                  <Label className="text-4xl font-extrabold text-[var(--shapeV1-parent)]">
+                    TechRecs
+                  </Label>
+                </Box>
                 <Box className="flex flex-col gap-3 px-2 py-2">
                   {chatHistory.map((items, key) => {
                     const lastChat = key === chatHistory.length - 1;
@@ -82,9 +98,22 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
                 </Box>
               </Box>
             ) : (
-              <Box className="w-full flex justify-center items-center flex-col">
+              <Box className="w-full flex justify-center items-center flex-col h-full ">
                 <Label className="text-5xl font-extrabold">TechRecs</Label>
                 <Label className="text-2xl font-light">Search Your Next Device With TechRecs</Label>
+                <Box className="absolute bottom-0 translate-y-50 right-0 translate-x-50">
+                  <Box className="flex  items-center gap-4">
+                    {SosmedApp.map((items, key) => (
+                      <Link href={items.params} key={key}>
+                        <UseTooltip content={items.name}>
+                          <Button variant="ghost">
+                            <items.icon className="size-5" />
+                          </Button>
+                        </UseTooltip>
+                      </Link>
+                    ))}
+                  </Box>
+                </Box>
               </Box>
             )}
 
@@ -108,7 +137,11 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
                 <DropDown
                   title="Settings"
                   className="absolute -translate-x-25 "
-                  subTitle="knowledge"
+                  subTitle="Knowledge"
+                  isPending={isPending}
+                  onLogout={() => onLogout()}
+                  isPopUp={isPopUp}
+                  setIsPopUp={setIsPopUp}
                 />
                 <Button variant="glass" onClick={() => onGenerate()} disabled={isPending}>
                   {isPending ? <Fallback title="Wait" /> : 'Search'}
@@ -130,6 +163,16 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
                 </Button>
               </Box>
             </Box>
+            <PopUp isOpen={isPopUp === 'knowledge'} onClose={() => setIsPopUp!(null)}>
+              <View className="w-full h-auto">
+                <Box className="flex justify-between items-center">
+                  <Label className="text-lg font-bold">Settings Knowledge</Label>
+                  <Button variant={'glass'} onClick={() => setIsPopUp!(null)}>
+                    <IconX />
+                  </Button>
+                </Box>
+              </View>
+            </PopUp>
           </Box>
         </Box>
       </Box>

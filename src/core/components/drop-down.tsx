@@ -13,7 +13,23 @@ import {
   DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
 import { DropdownType } from '@/src/types/components';
-const DropDown: React.FC<DropdownType> = ({ title, subTitle, className }) => {
+import Fallback from '@/src/components/ui/Fallback';
+interface DropDownProps {
+  isPopUp?: 'knowledge' | null;
+  setIsPopUp?: React.Dispatch<React.SetStateAction<'knowledge' | null>>;
+  onLogout?: () => void;
+  isPending?: boolean;
+}
+
+const DropDown: React.FC<DropdownType & DropDownProps> = ({
+  title,
+  subTitle,
+  className,
+  isPopUp,
+  setIsPopUp,
+  onLogout,
+  isPending,
+}) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className={className}>
@@ -23,6 +39,7 @@ const DropDown: React.FC<DropdownType> = ({ title, subTitle, className }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="center">
         <DropdownMenuLabel>{subTitle}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
             Profile
@@ -32,13 +49,8 @@ const DropDown: React.FC<DropdownType> = ({ title, subTitle, className }) => {
             Billing
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Keyboard shortcuts
-            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+          <DropdownMenuItem onClick={() => setIsPopUp!('knowledge')}>
+            Settings knowledge
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
@@ -61,13 +73,12 @@ const DropDown: React.FC<DropdownType> = ({ title, subTitle, className }) => {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>GitHub</DropdownMenuItem>
+        <DropdownMenuItem>Contact</DropdownMenuItem>
         <DropdownMenuItem>Support</DropdownMenuItem>
         <DropdownMenuItem disabled>API</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        <DropdownMenuItem onClick={() => onLogout!()} disabled={isPending}>
+          {isPending ? <Fallback title="Wait" /> : 'Log out'}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
