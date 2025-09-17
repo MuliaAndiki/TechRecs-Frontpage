@@ -1,6 +1,5 @@
 import Container from '@/src/components/ui/Container';
 import TermOfUseHeroSection from '@/src/core/section/terms-of-use/terms-of-use-hero-section';
-import { Label } from '@radix-ui/react-dropdown-menu';
 
 const TermsOfUseContainer = () => {
   return (
