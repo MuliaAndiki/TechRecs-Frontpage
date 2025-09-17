@@ -22,6 +22,10 @@ class AiApi {
     const res = await AxiosClient.delete(`/api/ai/chat/${userId}/${chatId}`);
     return res.data;
   }
+  async deleteChatByUser(): Promise<TResponse<any>> {
+    const res = await AxiosClient.delete('/api/ai/chat');
+    return res.data;
+  }
 }
 
 export default new AiApi();

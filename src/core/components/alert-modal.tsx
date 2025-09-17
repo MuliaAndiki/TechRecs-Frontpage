@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence,motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import {
   Dialog,
@@ -113,7 +113,7 @@ export function AlertModal({
                     shadow-lg
                   `}
                 >
-                  <span className="text-3xl">{iconConfig.emoji}</span>
+                  <span className="text-3xl -translate-y-[5px]">{iconConfig.emoji}</span>
                 </motion.div>
 
                 <motion.div
