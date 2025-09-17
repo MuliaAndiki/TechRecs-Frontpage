@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+
 import { UploadsTriggerProps } from '../types/utils';
 
 const UploadsTrigger = ({ children, onChange, accept, multiple }: UploadsTriggerProps) => {

@@ -1,10 +1,12 @@
-import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useAlert } from '../../use-alert';
-import Api from '@/src/service/props.service';
 import { useRouter } from 'next/navigation';
+
+import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
+import Api from '@/src/service/props.service';
 import { logout } from '@/src/stores/authSlice/authSlice';
+
 import { useAppDispatch } from '../../dispatch/dispatch';
+import { useAlert } from '../../use-alert';
 
 export default function useLogout() {
   const alert = useAlert();

@@ -1,18 +1,19 @@
 'use client';
-import Container from '@/src/components/ui/Container';
-import HomeHeroSection from '@/src/core/section/home/home-heroSection';
-import { PromptType } from '@/src/types/form';
 // import { useEffect } from 'react';
 // import { useAppSelector } from '@/src/hooks/dispatch/dispatch';
 // import { useAppDispatch } from '@/src/hooks/dispatch/dispatch';
 import { useEffect, useState } from 'react';
+
+import Container from '@/src/components/ui/Container';
+import HomeHeroSection from '@/src/core/section/home/home-heroSection';
 import useGenerate from '@/src/hooks/mutation/ai/useGenerate';
-import { useAlert } from '@/src/hooks/use-alert';
 import useGetAll from '@/src/hooks/mutation/ai/useGetAll';
 import useGetProfile from '@/src/hooks/mutation/auth/useGetProfile';
-import { cleanObject } from '@/src/utils/formdata';
-import { ChatType } from '@/src/types/components';
 import useLogout from '@/src/hooks/mutation/auth/useLogout';
+import { useAlert } from '@/src/hooks/use-alert';
+import { ChatType } from '@/src/types/components';
+import { PromptType } from '@/src/types/form';
+import { cleanObject } from '@/src/utils/formdata';
 
 const HomeContainer = () => {
   // const currentData = useAppSelector((state) => state.auth.currentUser?.user.role);

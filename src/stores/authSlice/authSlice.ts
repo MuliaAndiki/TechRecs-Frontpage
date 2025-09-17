@@ -1,5 +1,6 @@
-import { userSchema } from '@/src/types/api';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { userSchema } from '@/src/types/api';
 
 interface AuthState {
   currentUser: userSchema | null;

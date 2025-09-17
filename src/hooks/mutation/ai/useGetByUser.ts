@@ -1,5 +1,6 @@
-import Api from '@/src/service/props.service';
 import { useQuery } from '@tanstack/react-query';
+
+import Api from '@/src/service/props.service';
 
 export default function useGetByUser(id: string) {
   return useQuery({

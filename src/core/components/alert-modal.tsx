@@ -1,5 +1,7 @@
 'use client';
 
+import { AnimatePresence,motion } from 'framer-motion';
+
 import {
   Dialog,
   DialogContent,
@@ -8,7 +10,6 @@ import {
   DialogTitle,
 } from '@/src/components/ui/dialog';
 import { ModalProps } from '@/src/types/ui';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const iconMap = {
   success: {

@@ -1,6 +1,7 @@
+import { IconBrandDiscord, IconBrandGithub, IconBrandTiktok } from '@tabler/icons-react';
 import { FooterProps } from 'react-day-picker';
+
 import { FooterType, NavbarType, SosmedType } from '../types/config';
-import { IconBrandGithub, IconBrandDiscord, IconBrandTiktok } from '@tabler/icons-react';
 
 export const NavbarApp: NavbarType[] = [
   {

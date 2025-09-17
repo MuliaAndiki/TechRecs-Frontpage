@@ -1,8 +1,7 @@
+import { Label } from '@radix-ui/react-dropdown-menu';
+
 import CardBoard from '@/src/components/card-board';
 import Box from '@/src/components/ui/Box';
-import View from '@/src/components/ui/View';
-import { Label } from '@radix-ui/react-dropdown-menu';
-import { CardBoardApp } from '@/src/config/components.config';
 import {
   Carousel,
   CarouselContent,
@@ -10,6 +9,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/src/components/ui/carousel';
+import View from '@/src/components/ui/View';
+import { CardBoardApp } from '@/src/config/components.config';
 
 const ToolsSection = () => {
   return (

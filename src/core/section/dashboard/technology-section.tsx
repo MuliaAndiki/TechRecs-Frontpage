@@ -1,14 +1,15 @@
-import Iphone13 from '@/src/components/svg/iphone13';
-import Box from '@/src/components/ui/Box';
-import View from '@/src/components/ui/View';
-import Shape from '@/src/components/ui/Shape';
 import { Label } from '@radix-ui/react-dropdown-menu';
-import { AvatarCircles } from '@/src/components/magicui/avatar-circles';
-import { Avatars } from '@/src/config/app.config';
-import { Button } from '@/src/components/ui/button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
 import Image from 'next/image';
+
+import { AvatarCircles } from '@/src/components/magicui/avatar-circles';
 import TechnologyShape from '@/src/components/shape/dashboard/technology-shape';
+import Iphone13 from '@/src/components/svg/iphone13';
+import Box from '@/src/components/ui/Box';
+import { Button } from '@/src/components/ui/button';
+import Shape from '@/src/components/ui/Shape';
+import View from '@/src/components/ui/View';
+import { Avatars } from '@/src/config/app.config';
 const TechnologySection = () => {
   return (
     <View>

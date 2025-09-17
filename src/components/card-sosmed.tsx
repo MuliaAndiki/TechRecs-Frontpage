@@ -1,14 +1,16 @@
 import { Label } from '@radix-ui/react-dropdown-menu';
-import { useRef } from 'react';
-import { Circle } from './partial/circle';
-import { IconBrandDiscord, IconBrandTiktok, IconBrandGithub, IconMail } from '@tabler/icons-react';
-import { cn } from '@/src/lib/utils';
-import { AnimatedBeam } from '@/src/components/magicui/animated-beam';
+import { IconBrandDiscord, IconBrandGithub, IconBrandTiktok, IconMail } from '@tabler/icons-react';
 import Link from 'next/link';
-import { SosmedCardType } from '@/src/types/components';
-import UseTooltip from '@/src/core/components/tooltip';
-import Box from './ui/Box';
+import { useRef } from 'react';
+
+import { AnimatedBeam } from '@/src/components/magicui/animated-beam';
 import { Icons } from '@/src/config/components.config';
+import UseTooltip from '@/src/core/components/tooltip';
+import { cn } from '@/src/lib/utils';
+import { SosmedCardType } from '@/src/types/components';
+
+import { Circle } from './partial/circle';
+import Box from './ui/Box';
 
 const CardSosmed = () => {
   const containerRef = useRef<HTMLDivElement>(null);

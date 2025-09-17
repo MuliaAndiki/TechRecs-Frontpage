@@ -1,11 +1,12 @@
-import Box from '@/src/components/ui/Box';
-import View from '@/src/components/ui/View';
 import { Label } from '@radix-ui/react-dropdown-menu';
-import Shape from '@/src/components/ui/Shape';
-import Laptop from '@/src/components/svg/laptop';
-import Image from 'next/image';
-import { Button } from '@/src/components/ui/button';
 import { IconArrowNarrowRight } from '@tabler/icons-react';
+import Image from 'next/image';
+
+import Laptop from '@/src/components/svg/laptop';
+import Box from '@/src/components/ui/Box';
+import { Button } from '@/src/components/ui/button';
+import Shape from '@/src/components/ui/Shape';
+import View from '@/src/components/ui/View';
 
 const PartnerSection: React.FC = () => {
   return (

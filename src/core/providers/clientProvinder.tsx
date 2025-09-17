@@ -1,14 +1,16 @@
 'use client';
 
-import { store, persistor } from '@/src/stores/store';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Toaster } from 'react-hot-toast';
-import { AlertProvinder } from '@/src/hooks/use-alert';
-import ReactQueryClientProvinder from '@/src/hooks/query/queryClient';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ThemeProvider } from '@/src/hooks/theme/useTheme';
+
 import { SidebarProvider } from '@/src/components/ui/sidebar';
+import ReactQueryClientProvinder from '@/src/hooks/query/queryClient';
+import { ThemeProvider } from '@/src/hooks/theme/useTheme';
+import { AlertProvinder } from '@/src/hooks/use-alert';
+import { persistor,store } from '@/src/stores/store';
+
 import { composeProviders } from './composeProviders';
 
 const Providers = composeProviders([

@@ -1,11 +1,12 @@
-import Robot from '@/src/components/svg/robot';
-import Shape from '../../ui/Shape';
-import Box from '../../ui/Box';
-import { cn } from '@/src/lib/utils';
 import { Marquee } from '@/src/components/magicui/marquee';
-import CardMarque from '../../card-marque';
-import View from '../../ui/View';
+import Robot from '@/src/components/svg/robot';
 import { MarqueApp } from '@/src/config/components.config';
+import { cn } from '@/src/lib/utils';
+
+import CardMarque from '../../card-marque';
+import Box from '../../ui/Box';
+import Shape from '../../ui/Shape';
+import View from '../../ui/View';
 const Roboto = () => {
   return (
     <View className="absolute z-[-5] bottom-0 lg:w-full flex justify-center items-center flex-col">

@@ -1,6 +1,7 @@
-import Shape from './ui/Shape';
-import Box from './ui/Box';
 import { Label } from '@radix-ui/react-dropdown-menu';
+
+import Box from './ui/Box';
+import Shape from './ui/Shape';
 
 const CardPartner = () => {
   return (

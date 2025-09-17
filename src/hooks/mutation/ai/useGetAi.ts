@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import Api from '@/src/service/props.service';
 export default function useGetAi() {
   return useQuery({

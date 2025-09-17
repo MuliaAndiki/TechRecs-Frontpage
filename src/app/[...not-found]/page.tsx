@@ -1,10 +1,13 @@
-import BlankLayout from '@/src/core/layout/blank.layout';
+import Container from '@/src/components/ui/Container';
 import NotFound from '@/src/core/components/not-found';
+import BlankLayout from '@/src/core/layout/blank.layout';
 const NotFoundPage = async () => {
   return (
-    <BlankLayout>
-      <NotFound />
-    </BlankLayout>
+    <Container className="w-full">
+      <BlankLayout>
+        <NotFound />
+      </BlankLayout>
+    </Container>
   );
 };
 export default NotFoundPage;
