@@ -1,10 +1,11 @@
-import Box from '@/src/components/ui/Box';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
-import { FooterConfig } from '@/src/config/app.config';
+
+import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import { SosmedApp } from '@/src/config/app.config';
 import Shape from '@/src/components/ui/Shape';
+import { FooterConfig } from '@/src/config/app.config';
+import { SosmedApp } from '@/src/config/app.config';
 
 export default function FooterApp() {
   return (

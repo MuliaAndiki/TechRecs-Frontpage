@@ -1,6 +1,7 @@
-import Box from './ui/Box';
-import { MarqueType } from '../types/components';
 import Image from 'next/image';
+
+import { MarqueType } from '../types/components';
+import Box from './ui/Box';
 
 const CardMarque: React.FC<MarqueType> = ({ image, ...props }) => {
   return (

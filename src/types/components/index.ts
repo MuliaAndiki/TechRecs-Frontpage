@@ -115,7 +115,7 @@ export interface MarqueType {
 
 export interface DropdownType {
   children?: React.ReactNode;
-  title?: string;
+  title?: any;
   subTitle?: string;
   menuItem?: [string];
   shortcutItem?: [string];

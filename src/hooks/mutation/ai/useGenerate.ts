@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import Api from '@/src/service/props.service';
-import { useAlert } from '../../use-alert';
-import { PromptType } from '@/src/types/form';
+
 import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
+import Api from '@/src/service/props.service';
+import { PromptType } from '@/src/types/form';
+
+import { useAlert } from '../../use-alert';
 
 export default function useGenerate(options?: {
   onAfterSuccess?: (aiResponse: PromptType) => void;

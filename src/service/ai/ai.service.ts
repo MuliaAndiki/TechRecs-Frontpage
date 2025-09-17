@@ -18,6 +18,10 @@ class AiApi {
     const res = await AxiosClient.get(`/api/ai/getByUser/${id}`);
     return res.data;
   }
+  async deleteChatById(userId: string, chatId: string): Promise<TResponse<any>> {
+    const res = await AxiosClient.delete(`/api/ai/chat/${userId}/${chatId}`);
+    return res.data;
+  }
 }
 
 export default new AiApi();

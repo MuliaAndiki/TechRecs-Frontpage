@@ -1,5 +1,7 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosError,AxiosResponse } from 'axios';
+
 import { store } from '@/src/stores/store';
+
 import { env } from '../config/env.config';
 
 const AxiosClient = axios.create({

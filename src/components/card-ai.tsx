@@ -1,13 +1,15 @@
-import { Circle } from '@/src/components/partial/circle';
-import { useRef } from 'react';
-import { AnimatedBeam } from '@/src/components/magicui/animated-beam';
-import { Icons } from '@/src/config/components.config';
-import { AiCardType } from '@/src/types/components';
-import UseTooltip from '../core/components/tooltip';
-import Box from './ui/Box';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
+import { useRef } from 'react';
+
+import { AnimatedBeam } from '@/src/components/magicui/animated-beam';
 import { DotPattern } from '@/src/components/magicui/dot-pattern';
+import { Circle } from '@/src/components/partial/circle';
+import { Icons } from '@/src/config/components.config';
+import { AiCardType } from '@/src/types/components';
+
+import UseTooltip from '../core/components/tooltip';
+import Box from './ui/Box';
 
 const CardAi = () => {
   const containerRef = useRef<HTMLDivElement>(null);

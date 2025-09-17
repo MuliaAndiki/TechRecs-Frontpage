@@ -1,6 +1,7 @@
+import { Label } from '@radix-ui/react-dropdown-menu';
+
 import Box from '@/src/components/ui/Box';
 import View from '@/src/components/ui/View';
-import { Label } from '@radix-ui/react-dropdown-menu';
 
 const ProfileHeroSection = () => {
   return (

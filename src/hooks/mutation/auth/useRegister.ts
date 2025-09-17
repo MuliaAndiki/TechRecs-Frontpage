@@ -1,8 +1,10 @@
-import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
 import { useMutation } from '@tanstack/react-query';
-import Api from '@/src/service/props.service';
-import { useAlert } from '../../use-alert';
 import { useRouter } from 'next/navigation';
+
+import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
+import Api from '@/src/service/props.service';
+
+import { useAlert } from '../../use-alert';
 export default function useRegister() {
   const alert = useAlert();
   const router = useRouter();

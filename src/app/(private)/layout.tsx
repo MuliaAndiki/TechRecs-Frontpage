@@ -1,10 +1,11 @@
 'use client';
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/src/hooks/dispatch/dispatch';
-import HeaderApp from '@/src/core/components/header-app';
+import { useEffect } from 'react';
+
 import Container from '@/src/components/ui/Container';
+import HeaderApp from '@/src/core/components/header-app';
 import AppSideBar from '@/src/core/components/sidebar-app';
+import { useAppSelector } from '@/src/hooks/dispatch/dispatch';
 
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();

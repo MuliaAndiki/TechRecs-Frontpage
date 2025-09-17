@@ -1,10 +1,10 @@
 'use client';
-import View from '@/src/components/ui/View';
-import Box from '@/src/components/ui/Box';
 import { Label } from '@radix-ui/react-dropdown-menu';
-import CardSosmed from '@/src/components/card-sosmed';
 
 import CardAi from '@/src/components/card-ai';
+import CardSosmed from '@/src/components/card-sosmed';
+import Box from '@/src/components/ui/Box';
+import View from '@/src/components/ui/View';
 
 const TransformSection = () => {
   return (

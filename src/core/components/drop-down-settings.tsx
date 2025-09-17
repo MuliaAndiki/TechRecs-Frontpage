@@ -12,8 +12,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
-import { DropdownType } from '@/src/types/components';
 import Fallback from '@/src/components/ui/Fallback';
+import { DropdownType } from '@/src/types/components';
 interface DropDownProps {
   isPopUp?: 'knowledge' | null;
   setIsPopUp?: React.Dispatch<React.SetStateAction<'knowledge' | null>>;
@@ -21,7 +21,7 @@ interface DropDownProps {
   isPending?: boolean;
 }
 
-const DropDown: React.FC<DropdownType & DropDownProps> = ({
+const DropDownSettings: React.FC<DropdownType & DropDownProps> = ({
   title,
   subTitle,
   className,
@@ -85,4 +85,4 @@ const DropDown: React.FC<DropdownType & DropDownProps> = ({
   );
 };
 
-export default DropDown;
+export default DropDownSettings;

@@ -1,16 +1,23 @@
 'use client';
 
+import { Label } from '@radix-ui/react-dropdown-menu';
+import { IconHistoryToggle } from '@tabler/icons-react';
+import { IconX } from '@tabler/icons-react';
+import { IconDatabase, IconDots, IconNotes, IconSettings, IconUser } from '@tabler/icons-react';
+import { ChevronUp, User2 } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+import Box from '@/src/components/ui/Box';
+import { Button } from '@/src/components/ui/button';
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarTrigger,
-} from '@/src/components/ui/sidebar';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/src/components/ui/dropdown-menu';
+import Fallback from '@/src/components/ui/Fallback';
 import {
   Select,
   SelectContent,
@@ -19,34 +26,35 @@ import {
   SelectValue,
 } from '@/src/components/ui/select';
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from '@/src/components/ui/dropdown-menu';
-import { ChevronUp, User2 } from 'lucide-react';
-import Box from '@/src/components/ui/Box';
-import { Label } from '@radix-ui/react-dropdown-menu';
-import useLogout from '@/src/hooks/mutation/auth/useLogout';
-import useGetProfile from '@/src/hooks/mutation/auth/useGetProfile';
-import { IconHistoryToggle } from '@tabler/icons-react';
-import useGetByUser from '@/src/hooks/mutation/ai/useGetByUser';
-import Fallback from '@/src/components/ui/Fallback';
-import { useState } from 'react';
-import PopUp from './pop-up';
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+} from '@/src/components/ui/sidebar';
+import { useSidebar } from '@/src/components/ui/sidebar';
+import Spread from '@/src/components/ui/spread';
 import View from '@/src/components/ui/View';
-import { IconX } from '@tabler/icons-react';
-import { Button } from '@/src/components/ui/button';
-import { IconSettings, IconUser, IconDatabase, IconNotes } from '@tabler/icons-react';
-import ToggleTheme from './toggle-theme';
-import { getDate } from '@/src/utils/string.format';
+import useDeleteChatById from '@/src/hooks/mutation/ai/useDeleteChatById';
+import useGetByUser from '@/src/hooks/mutation/ai/useGetByUser';
 import useDeleteAkun from '@/src/hooks/mutation/auth/useDeleteAkun';
+import useGetProfile from '@/src/hooks/mutation/auth/useGetProfile';
+import useLogout from '@/src/hooks/mutation/auth/useLogout';
 import { useAlert } from '@/src/hooks/use-alert';
-import { useRouter } from 'next/navigation';
+import { getDate } from '@/src/utils/string.format';
+
+import DropDownHistory from './drop-down-history';
+import PopUp from './pop-up';
+import ToggleTheme from './toggle-theme';
 
 type SettingsType = 'general' | 'profile' | 'data' | 'about';
 
 export default function AppSideBar() {
+  const [selectIdChat, setSelectIdChat] = useState<string | null>(null);
   const { mutate: logout, isPending } = useLogout();
   const alert = useAlert();
   const Delete = useDeleteAkun();
@@ -58,6 +66,19 @@ export default function AppSideBar() {
   const [isPopUp, setIsPopUp] = useState<'settings' | null>(null);
   const [settings, setSettings] = useState<SettingsType>('general');
   const router = useRouter();
+  const { setOpen } = useSidebar();
+  const deleteChat = useDeleteChatById();
+
+  const handleDeleteChat = () => {
+    if (!data._id || !selectIdChat) {
+      console.log('params failed', data?._id, selectIdChat);
+      return;
+    }
+    deleteChat.mutate({
+      userId: data._id,
+      chatId: selectIdChat,
+    });
+  };
 
   const handleDelete = () => {
     return Delete.mutate({});
@@ -78,6 +99,26 @@ export default function AppSideBar() {
       { label: 'CreateAt', data: getDate(data.createdAt).toLowerCase() },
       { label: 'UpdateAt', data: getDate(data.updatedAt).toLowerCase() },
     ] as { label: string; data: string }[]);
+
+  const aboutData: { label: string; button: string }[] = [
+    { label: 'Terms of Use', button: 'View' },
+    { label: 'Privacy Policy', button: 'View' },
+  ];
+
+  const handleRedirect = (params: string) => {
+    if (params === 'Terms of Use') {
+      setOpen(false);
+      setIsPopUp(null);
+      router.push('/terms-of-use');
+    } else if (params === 'Privacy Policy') {
+      router.push('/privacy-policy');
+
+      setIsPopUp(null);
+      setOpen(false);
+    } else {
+      return null;
+    }
+  };
 
   return (
     <Sidebar>
@@ -102,8 +143,17 @@ export default function AppSideBar() {
                     .slice()
                     .reverse()
                     .map((items: any, key: number) => (
-                      <SidebarMenuButton className="h-auto" key={key}>
+                      <SidebarMenuButton
+                        onClick={() => setSelectIdChat(items._id)}
+                        className="h-auto flex justify-between items-center"
+                        key={key}
+                      >
                         {key + 1}. {items.prompt?.text}
+                        <DropDownHistory
+                          title={<IconDots />}
+                          subTitle="History"
+                          onDelete={() => handleDeleteChat()}
+                        />
                       </SidebarMenuButton>
                     ))}
                 </SidebarMenuItem>
@@ -131,7 +181,7 @@ export default function AppSideBar() {
       <PopUp isOpen={isPopUp === 'settings'} onClose={() => setIsPopUp(null)}>
         <View className="w-full h-auto">
           <Box className="flex justify-center items-center flex-col ">
-            <Box className="flex justify-between items-center w-full">
+            <Box className="flex justify-between items-center w-full ">
               <Label className="text-lg font-light">Settings</Label>
               <Button variant="glass" onClick={() => setIsPopUp(null)}>
                 <IconX />
@@ -200,13 +250,31 @@ export default function AppSideBar() {
                   </Box>
                 )}
                 {settings === 'data' && (
-                  <Box className="flex justify-center items-center">
-                    <Label>setUp Data</Label>
+                  <Box className="w-full h-full">
+                    {/* {aboutData.map((items, key) => (
+                      
+                      <Link href={items.params} key={key}>
+                        <Box className="flex justify-between items-center">
+                          <Label>{items.label}</Label>
+                          <Button>{items.button}</Button>
+                        </Box>
+                      </Link>
+                    ))} */}
                   </Box>
                 )}
                 {settings === 'about' && (
-                  <Box className="flex justify-center items-center">
-                    <Label>setUp About</Label>
+                  <Box className="w-full h-full">
+                    <Label className="text-2xl font-bold">About :</Label>
+                    <Box className="flex justify-center items-center flex-col ">
+                      {aboutData.map((items, key) => (
+                        <Box key={key} className="flex w-full justify-between items-center  my-4">
+                          <Label>{items.label}</Label>
+                          <Button variant={'glass'} onClick={() => handleRedirect(items.label)}>
+                            {items.button}
+                          </Button>
+                        </Box>
+                      ))}
+                    </Box>
                   </Box>
                 )}
               </Box>

@@ -1,3 +1,7 @@
+import { Label } from '@radix-ui/react-dropdown-menu';
+import Link from 'next/link';
+
+import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
 import {
   Card,
@@ -8,15 +12,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card';
+import Fallback from '@/src/components/ui/Fallback';
 import { Input } from '@/src/components/ui/input';
-import { Label } from '@radix-ui/react-dropdown-menu';
-import Link from 'next/link';
 import Shape from '@/src/components/ui/Shape';
 import Spread from '@/src/components/ui/spread';
 import View from '@/src/components/ui/View';
-import Box from '@/src/components/ui/Box';
 import { FormLoginType } from '@/src/types/form';
-import Fallback from '@/src/components/ui/Fallback';
 
 interface LoginPops {
   formLogin: FormLoginType;

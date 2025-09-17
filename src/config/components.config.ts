@@ -1,13 +1,14 @@
-import { CardBoardType, MarqueType } from '../types/components';
 import {
-  IconBrandOpenai,
-  IconUser,
   IconActivity,
   IconBrandDiscord,
-  IconBrandTiktok,
   IconBrandGithub,
+  IconBrandOpenai,
+  IconBrandTiktok,
   IconMail,
+  IconUser,
 } from '@tabler/icons-react';
+
+import { CardBoardType, MarqueType } from '../types/components';
 export const CardBoardApp: CardBoardType[] = [
   {
     image: '/asset/image.svg',

@@ -1,20 +1,22 @@
-import Box from '@/src/components/ui/Box';
-import View from '@/src/components/ui/View';
 import { Label } from '@radix-ui/react-dropdown-menu';
-import { Input } from '@/src/components/ui/input';
-import { PromptType } from '@/src/types/form';
-import DropDown from '../../components/drop-down';
-import { Button } from '@/src/components/ui/button';
-import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
-import Threads from '@/src/components/Threads';
-import { useMemo } from 'react';
-import { ChatType } from '@/src/types/components';
-import Fallback from '@/src/components/ui/Fallback';
-import PopUp from '../../components/pop-up';
 import { IconX } from '@tabler/icons-react';
-import { SosmedApp } from '@/src/config/app.config';
+import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo } from 'react';
+import ReactMarkdown from 'react-markdown';
+
+import Threads from '@/src/components/Threads';
+import Box from '@/src/components/ui/Box';
+import { Button } from '@/src/components/ui/button';
+import Fallback from '@/src/components/ui/Fallback';
+import { Input } from '@/src/components/ui/input';
+import View from '@/src/components/ui/View';
+import { SosmedApp } from '@/src/config/app.config';
+import { ChatType } from '@/src/types/components';
+import { PromptType } from '@/src/types/form';
+
+import DropDownSettings from '../../components/drop-down-settings';
+import PopUp from '../../components/pop-up';
 import UseTooltip from '../../components/tooltip';
 
 interface HeroHomeType {
@@ -134,7 +136,8 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
                     }))
                   }
                 />
-                <DropDown
+
+                <DropDownSettings
                   title="Settings"
                   className="absolute -translate-x-25 "
                   subTitle="Knowledge"

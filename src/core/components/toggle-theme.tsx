@@ -1,7 +1,8 @@
-import { useTheme } from '@/src/hooks/theme/useTheme';
-import { Button } from '@/src/components/ui/button';
 import { IconMoon } from '@tabler/icons-react';
 import { IconSun } from '@tabler/icons-react';
+
+import { Button } from '@/src/components/ui/button';
+import { useTheme } from '@/src/hooks/theme/useTheme';
 const ToggleTheme: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   return (

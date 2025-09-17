@@ -1,11 +1,13 @@
-import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
 import { useMutation } from '@tanstack/react-query';
-import { useAlert } from '../../use-alert';
 import { useRouter } from 'next/navigation';
+
+import { TResponse } from '@/src/pkg/react-query/mutation-wrapper.type';
 import Api from '@/src/service/props.service';
-import { useAppDispatch } from '../../dispatch/dispatch';
-import { userSchema } from '@/src/types/api';
 import { setCurrentUser } from '@/src/stores/authSlice/authSlice';
+import { userSchema } from '@/src/types/api';
+
+import { useAppDispatch } from '../../dispatch/dispatch';
+import { useAlert } from '../../use-alert';
 
 export const useLogin = () => {
   const dispatch = useAppDispatch();

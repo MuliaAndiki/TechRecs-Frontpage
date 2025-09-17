@@ -1,4 +1,5 @@
 import { MutationOptions, useMutation } from '@tanstack/react-query';
+
 import { TResponse } from './mutation-wrapper.type';
 
 export function useMutationWrapper<TInput, TData>(

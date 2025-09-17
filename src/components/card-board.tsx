@@ -1,9 +1,10 @@
-import View from './ui/View';
-import Shape from './ui/Shape';
 import { Label } from '@radix-ui/react-dropdown-menu';
 import Image from 'next/image';
-import Box from './ui/Box';
+
 import { CardBoardProps } from '../types/props';
+import Box from './ui/Box';
+import Shape from './ui/Shape';
+import View from './ui/View';
 
 const CardBoard: React.FC<CardBoardProps> = ({ data }) => {
   return (

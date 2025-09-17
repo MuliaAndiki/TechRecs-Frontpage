@@ -1,10 +1,11 @@
 'use client';
+import { useState } from 'react';
+
 import Container from '@/src/components/ui/Container';
 import RegisterSection from '@/src/core/section/auth/register-section';
-import { FormRegisterType } from '@/src/types/form';
-import { useState } from 'react';
 import useRegister from '@/src/hooks/mutation/auth/useRegister';
 import { useAlert } from '@/src/hooks/use-alert';
+import { FormRegisterType } from '@/src/types/form';
 
 const RegisterContainer = () => {
   const register = useRegister();
