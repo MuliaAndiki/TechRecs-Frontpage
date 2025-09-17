@@ -10,6 +10,13 @@ import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
 import Fallback from '@/src/components/ui/Fallback';
 import { Input } from '@/src/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/src/components/ui/select';
 import View from '@/src/components/ui/View';
 import { SosmedApp } from '@/src/config/app.config';
 import { ChatType } from '@/src/types/components';
@@ -18,7 +25,7 @@ import { PromptType } from '@/src/types/form';
 import DropDownSettings from '../../components/drop-down-settings';
 import PopUp from '../../components/pop-up';
 import UseTooltip from '../../components/tooltip';
-
+import { BrandDevice, DeviceType } from '../../const';
 interface HeroHomeType {
   formRequest: PromptType;
   setFormRequest: React.Dispatch<React.SetStateAction<PromptType>>;
@@ -32,6 +39,10 @@ interface HeroHomeType {
   onLogout: () => void;
   isPopUp: 'knowledge' | null;
   setIsPopUp: React.Dispatch<React.SetStateAction<'knowledge' | null>>;
+  isState: 'laptop' | 'tablet' | 'phone' | null | string;
+  setIsState: React.Dispatch<React.SetStateAction<'laptop' | 'tablet' | 'phone' | null | string>>;
+  onChangeDevice: (value: string) => void;
+  onChangeBrand: (value: string) => void;
 }
 
 const HomeHeroSection: React.FC<HeroHomeType> = ({
@@ -47,6 +58,10 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
   onLogout,
   isPopUp,
   setIsPopUp,
+  isState,
+  setIsState,
+  onChangeDevice,
+  onChangeBrand,
 }) => {
   const bg = useMemo(
     () => (
@@ -56,6 +71,41 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
     ),
     []
   );
+
+  const renderSetup = () => {
+    switch (isState) {
+      case 'laptop':
+        return (
+          <View className="w-full h-full">
+            <Box className="flex justify-center items-center">
+              <Label>Setup Laptop</Label>
+            </Box>
+          </View>
+        );
+
+      case 'phone':
+        return (
+          <View className="w-full h-full">
+            <Box className="flex justify-center items-center">
+              <Label>Setup Phone</Label>
+            </Box>
+          </View>
+        );
+
+      case 'tablet':
+        return (
+          <View className="w-full h-full">
+            <Box className="flex justify-center items-center">
+              <Label>Setup Tablet</Label>
+            </Box>
+          </View>
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <View>
       <Box className="flex min-h-screen  justify-center items-center relative z-0">
@@ -168,11 +218,57 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
             </Box>
             <PopUp isOpen={isPopUp === 'knowledge'} onClose={() => setIsPopUp!(null)}>
               <View className="w-full h-auto">
-                <Box className="flex justify-between items-center">
+                <Box className="flex justify-between items-center my-2">
                   <Label className="text-lg font-bold">Settings Knowledge</Label>
                   <Button variant={'glass'} onClick={() => setIsPopUp!(null)}>
                     <IconX />
                   </Button>
+                </Box>
+                <Box className="flex justify-center items-center flex-col ">
+                  <Box className="flex justify-between items-center gap-2 w-full">
+                    <Select
+                      onValueChange={onChangeDevice}
+                      value={String(formRequest.prompt.category?.deviceType)}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Device Type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {DeviceType.map((items, key) => (
+                          <SelectItem key={key} value={`${items}`}>
+                            {items}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Box className="w-full">
+                      <Select
+                        onValueChange={onChangeBrand}
+                        value={String(formRequest.prompt.category?.brand)}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Brands Type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {BrandDevice.map((items, key) => (
+                            <SelectItem key={key} value={`${items}`}>
+                              {items}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </Box>
+                  </Box>
+
+                  <Box className="flex flex-col gap-3 w-full my-2">
+                    <Label className="px-1 text-center">Budget :</Label>
+                    <Box className="flex justify-between items-center gap-2">
+                      <Input type="number" placeholder="min" />
+                      <Input type="number" placeholder="max" />
+                    </Box>
+                  </Box>
+
+                  {renderSetup()}
                 </Box>
               </View>
             </PopUp>

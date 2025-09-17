@@ -7,7 +7,7 @@ const TermOfUseHeroSection = () => {
   return (
     <View>
       <Box className="flex min-h-screen justify-center items-center relative z-0">
-        <Label>Setup Section</Label>
+        <Label className="font-bold text-3xl">TechRecs - Terms of Use</Label>
       </Box>
     </View>
   );

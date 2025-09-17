@@ -1,9 +1,9 @@
 'use client';
 
 import { Label } from '@radix-ui/react-dropdown-menu';
-import { IconHistoryToggle } from '@tabler/icons-react';
 import { IconX } from '@tabler/icons-react';
 import { IconDatabase, IconDots, IconNotes, IconSettings, IconUser } from '@tabler/icons-react';
+import { IconHistoryToggle } from '@tabler/icons-react';
 import { ChevronUp, User2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -37,9 +37,9 @@ import {
   SidebarTrigger,
 } from '@/src/components/ui/sidebar';
 import { useSidebar } from '@/src/components/ui/sidebar';
-import Spread from '@/src/components/ui/spread';
 import View from '@/src/components/ui/View';
 import useDeleteChatById from '@/src/hooks/mutation/ai/useDeleteChatById';
+import useDeleteChatUser from '@/src/hooks/mutation/ai/useDeleteChatUser';
 import useGetByUser from '@/src/hooks/mutation/ai/useGetByUser';
 import useDeleteAkun from '@/src/hooks/mutation/auth/useDeleteAkun';
 import useGetProfile from '@/src/hooks/mutation/auth/useGetProfile';
@@ -65,16 +65,18 @@ export default function AppSideBar() {
   const dataAll = getAll.data?.data || [];
   const [isPopUp, setIsPopUp] = useState<'settings' | null>(null);
   const [settings, setSettings] = useState<SettingsType>('general');
+  const [popUp, setPopUp] = useState<'deleteAllChat' | null>(null);
   const router = useRouter();
   const { setOpen } = useSidebar();
-  const deleteChat = useDeleteChatById();
+  const deleteChatById = useDeleteChatById();
+  const deleteChatUser = useDeleteChatUser();
 
   const handleDeleteChat = () => {
     if (!data._id || !selectIdChat) {
       console.log('params failed', data?._id, selectIdChat);
       return;
     }
-    deleteChat.mutate({
+    deleteChatById.mutate({
       userId: data._id,
       chatId: selectIdChat,
     });
@@ -83,6 +85,9 @@ export default function AppSideBar() {
   const handleDelete = () => {
     return Delete.mutate({});
   };
+
+  const handleDeleteChatUser = () => deleteChatUser.mutate({});
+
   const labelSettings: { icon: React.ElementType; label: string; state: SettingsType }[] = [
     { icon: IconSettings, label: 'General', state: 'general' },
     { icon: IconUser, label: 'Profile', state: 'profile' },
@@ -251,15 +256,24 @@ export default function AppSideBar() {
                 )}
                 {settings === 'data' && (
                   <Box className="w-full h-full">
-                    {/* {aboutData.map((items, key) => (
-                      
-                      <Link href={items.params} key={key}>
-                        <Box className="flex justify-between items-center">
-                          <Label>{items.label}</Label>
-                          <Button>{items.button}</Button>
-                        </Box>
-                      </Link>
-                    ))} */}
+                    <Label className="text-2xl font-bold">Data :</Label>
+                    <Box className="flex justify-between items-center">
+                      <Label>Delete All Data Chat :</Label>
+                      <Button
+                        variant="destructive"
+                        onClick={() =>
+                          alert.modal({
+                            title: 'Delete',
+                            deskripsi: 'Are you sure you want to delete all chat history?',
+                            icon: 'warning',
+                            onConfirm: () => handleDeleteChatUser(),
+                            onClose: () => null,
+                          })
+                        }
+                      >
+                        Remove
+                      </Button>
+                    </Box>
                   </Box>
                 )}
                 {settings === 'about' && (

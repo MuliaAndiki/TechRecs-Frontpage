@@ -3,6 +3,7 @@
 // import { useAppSelector } from '@/src/hooks/dispatch/dispatch';
 // import { useAppDispatch } from '@/src/hooks/dispatch/dispatch';
 import { useEffect, useState } from 'react';
+import { is } from 'zod/v4/locales';
 
 import Container from '@/src/components/ui/Container';
 import HomeHeroSection from '@/src/core/section/home/home-heroSection';
@@ -118,10 +119,20 @@ const HomeContainer = () => {
   const [typingText, setTypingText] = useState<string | null>('');
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [aiResponse, setAiResponse] = useState<PromptType | null>(null);
+  const [isState, setIsState] = useState<'laptop' | 'tablet' | 'phone' | null | string>(null);
 
-  const { mutate: logout, isPending } = useLogout();
+  const { mutate: logout } = useLogout();
   const handleLogout = () => logout({});
 
+  // @ts-check
+  const handleChangeDevice = (value: string) => {
+    setIsState(value);
+  };
+
+  // @ts-check
+  const handleChangeBrand = () => {
+    // setUp For Brand
+  };
   const simulateTyping = (fullText: string) => {
     setTypingText('');
     setIsTyping(true);
@@ -184,6 +195,10 @@ const HomeContainer = () => {
         onLogout={handleLogout}
         isPopUp={isPopUp}
         setIsPopUp={setIsPopUp}
+        isState={isState}
+        setIsState={setIsState}
+        onChangeDevice={handleChangeDevice}
+        onChangeBrand={handleChangeBrand}
       />
     </Container>
   );

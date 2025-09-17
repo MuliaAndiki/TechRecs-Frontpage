@@ -16,7 +16,6 @@ export interface PromptType {
     category?: {
       deviceType?: string;
       brand?: string;
-      releaseYear?: number;
       budget: {
         min?: number;
         max?: number;
