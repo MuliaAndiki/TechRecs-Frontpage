@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { CardBoardProps } from '../types/props';
 import Box from './ui/Box';
-import Shape from './ui/shape';
+import Shape from './ui/Shape';
 import View from './ui/View';
 
 const CardBoard: React.FC<CardBoardProps> = ({ data }) => {

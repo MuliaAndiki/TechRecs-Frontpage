@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Laptop from '@/src/components/svg/laptop';
 import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import Shape from '@/src/components/ui/shape';
+import Shape from '@/src/components/ui/Shape';
 import View from '@/src/components/ui/View';
 import { useIsMobile } from '@/src/hooks/use-mobile';
 

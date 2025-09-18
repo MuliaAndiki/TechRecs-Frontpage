@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import Shape from '@/src/components/ui/shape';
+import Shape from '@/src/components/ui/Shape';
 import { FooterConfig } from '@/src/config/app.config';
 import { SosmedApp } from '@/src/config/app.config';
 

@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react';
 import { is } from 'zod/v4/locales';
 
-import Container from '@/src/components/ui/container';
+import Container from '@/src/components/ui/Container';
 import HomeHeroSection from '@/src/core/section/home/home-heroSection';
 import useGenerate from '@/src/hooks/mutation/ai/useGenerate';
 import useGetAll from '@/src/hooks/mutation/ai/useGetAll';

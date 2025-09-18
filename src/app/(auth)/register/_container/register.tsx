@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-import Container from '@/src/components/ui/container';
+import Container from '@/src/components/ui/Container';
 import RegisterSection from '@/src/core/section/auth/register-section';
 import useRegister from '@/src/hooks/mutation/auth/useRegister';
 import { useAlert } from '@/src/hooks/use-alert';

@@ -1,4 +1,4 @@
-import Container from '@/src/components/ui/container';
+import Container from '@/src/components/ui/Container';
 
 import FooterApp from '../components/footer-app';
 import HeaderApp from '../components/header-app';
