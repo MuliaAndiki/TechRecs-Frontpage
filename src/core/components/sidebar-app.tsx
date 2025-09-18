@@ -17,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
-import Fallback from '@/src/components/ui/fallback';
+import Fallback from '@/src/components/ui/Fallback';
 import {
   Select,
   SelectContent,

@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import Threads from '@/src/components/Threads';
 import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import Fallback from '@/src/components/ui/fallback';
+import Fallback from '@/src/components/ui/Fallback';
 import { Input } from '@/src/components/ui/input';
 import {
   Select,

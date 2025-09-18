@@ -14,7 +14,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
-import Fallback from '@/src/components/ui/fallback';
+import Fallback from '@/src/components/ui/Fallback';
 import { SosmedApp } from '@/src/config/app.config';
 import { DropdownType } from '@/src/types/components';
 interface DropDownProps {
