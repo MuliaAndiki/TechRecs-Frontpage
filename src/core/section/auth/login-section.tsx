@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card';
-import Fallback from '@/src/components/ui/fallback';
+import Fallback from '@/src/components/ui/Fallback';
 import { Input } from '@/src/components/ui/input';
 import Shape from '@/src/components/ui/Shape';
 import Spread from '@/src/components/ui/spread';
