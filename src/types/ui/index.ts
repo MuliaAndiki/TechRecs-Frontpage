@@ -28,6 +28,7 @@ export interface DivProps {
   children?: React.ReactNode;
   className?: string;
   as?: keyof JSX.IntrinsicElements;
+  onClick?: () => void;
 }
 export interface SpreedProps {
   orientation?: 'horizontal' | 'vertical';

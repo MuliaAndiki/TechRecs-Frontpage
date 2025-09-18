@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +14,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
-import Fallback from '@/src/components/ui/Fallback';
+import Fallback from '@/src/components/ui/fallback';
+import { SosmedApp } from '@/src/config/app.config';
 import { DropdownType } from '@/src/types/components';
 interface DropDownProps {
   isPopUp?: 'knowledge' | null;
@@ -41,14 +44,7 @@ const DropDownSettings: React.FC<DropdownType & DropDownProps> = ({
         <DropdownMenuLabel>{subTitle}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem onClick={() => setIsPopUp!('knowledge')}>
-            Settings knowledge
-          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setIsPopUp!('knowledge')}>Super Promt</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
@@ -56,10 +52,11 @@ const DropDownSettings: React.FC<DropdownType & DropDownProps> = ({
             <DropdownMenuSubTrigger>Contact</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>Email</DropdownMenuItem>
-                <DropdownMenuItem>Discord</DropdownMenuItem>
-
-                <DropdownMenuItem>Github</DropdownMenuItem>
+                {SosmedApp.map((items, key) => (
+                  <Link href={items.params} key={key}>
+                    <DropdownMenuItem>{items.name}</DropdownMenuItem>
+                  </Link>
+                ))}
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>

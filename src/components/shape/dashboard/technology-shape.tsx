@@ -1,4 +1,4 @@
-import Shape from '../../ui/Shape';
+import Shape from '../../ui/shape';
 const TechnologyShape = () => {
   return (
     <>

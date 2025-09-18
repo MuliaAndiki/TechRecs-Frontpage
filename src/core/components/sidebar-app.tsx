@@ -17,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/src/components/ui/dropdown-menu';
-import Fallback from '@/src/components/ui/Fallback';
+import Fallback from '@/src/components/ui/fallback';
 import {
   Select,
   SelectContent,
@@ -192,12 +192,12 @@ export default function AppSideBar() {
                 <IconX />
               </Button>
             </Box>
-            <Box className="grid grid-cols-[1fr_2fr] grid-rows-1 gap-4  w-full">
-              <Box className="flex justify-center items-start flex-col mt-10 border-r ">
+            <Box className="grid lg:grid-cols-[1fr_2fr] grid-rows-1 gap-4  w-full">
+              <Box className="flex justify-center items-start flex-col mt-10 lg:border-r ">
                 {labelSettings.map((items, key) => (
                   <div
                     key={key}
-                    className="flex gap-2 cursor-pointer justify-start items-center  w-full"
+                    className="flex gap-2 cursor-pointer lg:justify-start justify-center items-center  w-full"
                     onClick={() => setSettings(items.state)}
                   >
                     <items.icon />

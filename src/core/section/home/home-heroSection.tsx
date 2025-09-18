@@ -8,7 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import Threads from '@/src/components/Threads';
 import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import Fallback from '@/src/components/ui/Fallback';
+import Fallback from '@/src/components/ui/fallback';
 import { Input } from '@/src/components/ui/input';
 import {
   Select,
@@ -43,6 +43,7 @@ interface HeroHomeType {
   setIsState: React.Dispatch<React.SetStateAction<'laptop' | 'tablet' | 'phone' | null | string>>;
   onChangeDevice: (value: string) => void;
   onChangeBrand: (value: string) => void;
+  isMobile?: boolean;
 }
 
 const HomeHeroSection: React.FC<HeroHomeType> = ({
@@ -62,6 +63,7 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
   setIsState,
   onChangeDevice,
   onChangeBrand,
+  isMobile,
 }) => {
   const bg = useMemo(
     () => (
@@ -151,10 +153,12 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
               </Box>
             ) : (
               <Box className="w-full flex justify-center items-center flex-col h-full ">
-                <Label className="text-5xl font-extrabold">TechRecs</Label>
-                <Label className="text-2xl font-light">Search Your Next Device With TechRecs</Label>
-                <Box className="absolute bottom-0 translate-y-50 right-0 translate-x-50">
-                  <Box className="flex  items-center gap-4">
+                <Label className=" text-4xl lg:text-5xl font-extrabold">TechRecs</Label>
+                <Label className="text-lg lg:text-2xl font-light text-center">
+                  Search Your Next Device With TechRecs
+                </Label>
+                <Box className="absolute bottom-0 translate-y-50 lg:right-0  lg:translate-x-50">
+                  <Box className="flex items-center gap-4">
                     {SosmedApp.map((items, key) => (
                       <Link href={items.params} key={key}>
                         <UseTooltip content={items.name}>
@@ -170,7 +174,7 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
             )}
 
             <Box className="w-full flex  sticky items-center bottom-10 p-4 z-50 flex-col">
-              <Box className="flex w-full justify-center items-center gap-4 relative">
+              <Box className="flex w-full justify-center items-center gap-4 relative lg:flex-nowrap flex-wrap">
                 <Input
                   placeholder="Find Your Device"
                   name={formRequest.prompt.text!}
@@ -189,28 +193,43 @@ const HomeHeroSection: React.FC<HeroHomeType> = ({
 
                 <DropDownSettings
                   title="Settings"
-                  className="absolute -translate-x-25 "
+                  className="absolute lg:-translate-x-25 translate-x-16 -translate-y-15 lg:-translate-y-[9px] "
                   subTitle="Knowledge"
                   isPending={isPending}
                   onLogout={() => onLogout()}
                   isPopUp={isPopUp}
                   setIsPopUp={setIsPopUp}
                 />
-                <Button variant="glass" onClick={() => onGenerate()} disabled={isPending}>
+                <Button
+                  variant="glass"
+                  className=" w-full lg:w-auto "
+                  onClick={() => onGenerate()}
+                  disabled={isPending}
+                >
                   {isPending ? <Fallback title="Wait" /> : 'Search'}
                 </Button>
               </Box>
 
-              <Box className="mt-2 z-0 flex gap-2">
-                <Button variant="glass" className="">
-                  <Box className="flex justify-center items-center gap-2">
-                    <Image alt="AI" src="/asset/GeminiV1.svg" width={30} height={30} />
+              <Box className="mt-2 z-0 flex gap-2 lg:flex-nowrap flex-wrap justify-center">
+                <Button variant="glass" className="w-full">
+                  <Box className="flex justify-center items-center gap-2 ">
+                    <Image
+                      alt="AI"
+                      src="/asset/GeminiV1.svg"
+                      width={isMobile ? 30 : 30}
+                      height={isMobile ? 30 : 30}
+                    />
                     <Label className="font-extrabold">Gemini</Label>
                   </Box>
                 </Button>
-                <Button className="" variant="glass">
+                <Button className="w-full" variant="glass">
                   <Box className="flex justify-center items-center gap-2">
-                    <Image alt="AI" src="/asset/deepseekV1.svg" width={30} height={30} />
+                    <Image
+                      alt="AI"
+                      src="/asset/deepseekV1.svg"
+                      width={isMobile ? 30 : 30}
+                      height={isMobile ? 30 : 30}
+                    />
                     <Label className="font-extrabold">Deepseek</Label>
                   </Box>
                 </Button>

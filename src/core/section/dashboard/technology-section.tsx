@@ -7,7 +7,7 @@ import TechnologyShape from '@/src/components/shape/dashboard/technology-shape';
 import Iphone13 from '@/src/components/svg/iphone13';
 import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import Shape from '@/src/components/ui/Shape';
+import Shape from '@/src/components/ui/shape';
 import View from '@/src/components/ui/View';
 import { Avatars } from '@/src/config/app.config';
 const TechnologySection = () => {

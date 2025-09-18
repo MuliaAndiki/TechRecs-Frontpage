@@ -1,4 +1,4 @@
-import Container from '@/src/components/ui/Container';
+import Container from '@/src/components/ui/container';
 
 import LoginContainer from './_container/login';
 

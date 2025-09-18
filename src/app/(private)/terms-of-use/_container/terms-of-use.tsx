@@ -1,4 +1,4 @@
-import Container from '@/src/components/ui/Container';
+import Container from '@/src/components/ui/container';
 import TermOfUseHeroSection from '@/src/core/section/terms-of-use/terms-of-use-hero-section';
 
 const TermsOfUseContainer = () => {

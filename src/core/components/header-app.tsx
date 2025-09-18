@@ -39,13 +39,18 @@ export default function HeaderApp() {
             ))}
         </Box>
         <Box className="flex justify-center items-center gap-4">
-          {SosmedApp.map((items, key) => (
-            <Link href={items.params} key={key}>
-              <Button variant="ghost">
-                <items.icon className="size-5" />
-              </Button>
-            </Link>
-          ))}
+          {!Mobile && (
+            <>
+              {SosmedApp.map((items, key) => (
+                <Link href={items.params} key={key}>
+                  <Button variant="ghost">
+                    <items.icon className="size-5" />
+                  </Button>
+                </Link>
+              ))}
+            </>
+          )}
+
           {!hiddenToggle.includes(pathname) && <ToggleTheme />}
         </Box>
       </div>

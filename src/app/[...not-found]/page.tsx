@@ -1,4 +1,4 @@
-import Container from '@/src/components/ui/Container';
+import Container from '@/src/components/ui/container';
 import NotFound from '@/src/core/components/not-found';
 import BlankLayout from '@/src/core/layout/blank.layout';
 const NotFoundPage = async () => {

@@ -5,7 +5,7 @@ import { cn } from '@/src/lib/utils';
 
 import CardMarque from '../../card-marque';
 import Box from '../../ui/Box';
-import Shape from '../../ui/Shape';
+import Shape from '../../ui/shape';
 import View from '../../ui/View';
 const Roboto = () => {
   return (

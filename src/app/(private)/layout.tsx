@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import Container from '@/src/components/ui/Container';
+import Container from '@/src/components/ui/container';
 import HeaderApp from '@/src/core/components/header-app';
 import AppSideBar from '@/src/core/components/sidebar-app';
 import { useAppSelector } from '@/src/hooks/dispatch/dispatch';
