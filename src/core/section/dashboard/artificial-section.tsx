@@ -5,7 +5,7 @@ import Icon from '@/src/components/svg/icon';
 import Iphone15 from '@/src/components/svg/iphone15';
 import Square from '@/src/components/svg/square';
 import Box from '@/src/components/ui/Box';
-import Shape from '@/src/components/ui/shape';
+import Shape from '@/src/components/ui/Shape';
 import View from '@/src/components/ui/View';
 import { useIsMobile } from '@/src/hooks/use-mobile';
 import { cn } from '@/src/lib/utils';

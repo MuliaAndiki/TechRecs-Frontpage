@@ -1,6 +1,6 @@
 'use client';
 
-import Container from '@/src/components/ui/container';
+import Container from '@/src/components/ui/Container';
 import DashboardLayout from '@/src/core/layout/dashboard-layout';
 import ArtificialSection from '@/src/core/section/dashboard/artificial-section';
 import DashboardHeroSection from '@/src/core/section/dashboard/hero-section';
