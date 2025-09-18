@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import Shape from '@/src/components/ui/Shape';
+import Shape from '@/src/components/ui/shape';
 import { FooterConfig } from '@/src/config/app.config';
 import { SosmedApp } from '@/src/config/app.config';
 
@@ -13,9 +13,11 @@ export default function FooterApp() {
       <Box className="bg-foreground/10 flex justify-center items-center flex-col p-14 relative overflow-clip">
         <Shape className="w-130 h-130 bg-[var(--shapeV1-parent)] rounded-full z-[-5] blur-3xl translate-y-70 translate-x-30 " />
         <Shape className="w-130 h-130 bg-[var(--shapeV1-child)] rounded-full z-[-5] blur-3xl translate-y-70 -translate-x-30 " />
-        <Box className="flex justify-between items-center w-full ">
+        <Box className="flex flex-wrap lg:flex-nowrap justify-between items-center w-full ">
           <Box className="flex justify-start items-start flex-col">
-            <Label className="text-5xl font-semibold text-[var(--shapeV1-child)]">TechRecs</Label>
+            <Label className="text-5xl font-semibold text-[var(--shapeV1-child)] text-center w-full lg:w-auto">
+              TechRecs
+            </Label>
             <Label className="text-3xl font-light w-full max-w-80 my-10">
               Technology AI Generator Website
             </Label>
@@ -45,7 +47,7 @@ export default function FooterApp() {
             <Label className="text-lg font-light">Address Line Lorem Ipsum Dolore Sit Amet</Label>
           </Box>
         </Box>
-        <Box className="w-full flex justify-center items-center">
+        <Box className="w-full flex justify-center items-center flex-col">
           <Box className="flex  gap-4 items-center w-full text-lg">
             <Label>Terms</Label>
             <Label>Privacy</Label>

@@ -1,6 +1,6 @@
 const IPhone13 = () => {
   return (
-    <div className="w-full  h-auto">
+    <div className="w-full h-auto">
       <svg
         viewBox="0 0 521 881"
         fill="none"

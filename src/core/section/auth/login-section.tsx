@@ -12,9 +12,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/src/components/ui/card';
-import Fallback from '@/src/components/ui/Fallback';
+import Fallback from '@/src/components/ui/fallback';
 import { Input } from '@/src/components/ui/input';
-import Shape from '@/src/components/ui/Shape';
+import Shape from '@/src/components/ui/shape';
 import Spread from '@/src/components/ui/spread';
 import View from '@/src/components/ui/View';
 import { FormLoginType } from '@/src/types/form';

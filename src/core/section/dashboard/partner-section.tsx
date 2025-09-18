@@ -5,43 +5,51 @@ import Image from 'next/image';
 import Laptop from '@/src/components/svg/laptop';
 import Box from '@/src/components/ui/Box';
 import { Button } from '@/src/components/ui/button';
-import Shape from '@/src/components/ui/Shape';
+import Shape from '@/src/components/ui/shape';
 import View from '@/src/components/ui/View';
+import { useIsMobile } from '@/src/hooks/use-mobile';
 
 const PartnerSection: React.FC = () => {
+  const mobile = useIsMobile();
   return (
     <View>
       <Box className="flex min-h-screen justify-center items-center relative z-0 overflow-x-hidden ">
-        <Shape className="w-90 h-90 rounded-full bg-[var(--shapeV1-parent)] z-[-5] blur-3xl right-0 -translate-x-1/2" />
+        <Shape className="w-90 h-90 rounded-full bg-[var(--shapeV1-parent)] z-[-5] blur-3xl right-0 lg:-translate-x-1/2" />
         <Shape className="w-90 h-90 rounded-full bg-[var(--shapeV1-child)] z-[-5] blur-3xl right-0 -translate-x-1/2 translate-y-30" />
-        <Shape className="border p-4 rounded-lg bg-foreground/10 top-1/5 left-1/2 -translate-y-10 ">
-          <Box className="flex justify-center items-center gap-4">
-            <Box className="w-5 h-5 rounded-full bg-[var(--shapeV1-child)]" />
-            <Label className="text-lg">Vision AI Technology</Label>
-          </Box>
-          <Label className="text-sm font-light max-w-50 text-center">
-            Our Technology AI Generator website empowers individuals
-          </Label>
-        </Shape>
-        <Shape className="border p-4 rounded-lg bg-foreground/10 bottom-1/5 left-1/2 translate-y-10  ">
-          <Box className="flex justify-center items-center gap-4">
-            <Box className="w-5 h-5 rounded-full bg-[var(--shapeV1-parent)]" />
-            <Label className="text-lg">Vision AI Technology</Label>
-          </Box>
-          <Label className="text-sm font-light max-w-50 text-center">
-            Our Technology AI Generator website empowers individuals
-          </Label>
-        </Shape>
-        <Shape className="border p-4 rounded-lg bg-foreground/10 -translate-x-20   ">
-          <Box className="flex justify-center items-center gap-4">
-            <Box className="w-5 h-5 rounded-full bg-foreground" />
-            <Label className="text-lg">Vision AI Technology</Label>
-          </Box>
-          <Label className="text-sm font-light max-w-50 text-center">
-            Our Technology AI Generator website empowers individuals
-          </Label>
-        </Shape>
-        <Box className="grid grid-cols-2 grid-rows-1 gap-2 w-full">
+        {!mobile && (
+          <>
+            <Shape className="border p-4 rounded-lg bg-foreground/10 top-1/5 left-1/2 -translate-y-10 ">
+              <Box className="flex justify-center items-center gap-4">
+                <Box className="w-5 h-5 rounded-full bg-[var(--shapeV1-child)]" />
+                <Label className="text-lg">Vision AI Technology</Label>
+              </Box>
+              <Label className="text-sm font-light max-w-50 text-center">
+                Our Technology AI Generator website empowers individuals
+              </Label>
+            </Shape>
+            <Shape className="border p-4 rounded-lg bg-foreground/10 bottom-1/5 left-1/2 translate-y-10  ">
+              <Box className="flex justify-center items-center gap-4">
+                <Box className="w-5 h-5 rounded-full bg-[var(--shapeV1-parent)]" />
+                <Label className="text-lg">Vision AI Technology</Label>
+              </Box>
+              <Label className="text-sm font-light max-w-50 text-center">
+                Our Technology AI Generator website empowers individuals
+              </Label>
+            </Shape>
+            <Shape className="border p-4 rounded-lg bg-foreground/10 -translate-x-20   ">
+              <Box className="flex justify-center items-center gap-4">
+                <Box className="w-5 h-5 rounded-full bg-foreground" />
+                <Label className="text-lg">Vision AI Technology</Label>
+              </Box>
+              <Label className="text-sm font-light max-w-50 text-center">
+                Our Technology AI Generator website empowers individuals
+              </Label>
+            </Shape>
+          </>
+        )}
+
+        {/* Spread */}
+        <Box className="grid lg:grid-cols-2 grid-rows-1 gap-2 w-full">
           <Box className="  flex justify-between items-center flex-col">
             <Label className="text-xl font-light w-full max-w-120 text-start">
               Workflow with Custom AI Tools
@@ -53,8 +61,8 @@ const PartnerSection: React.FC = () => {
               <Image
                 alt="visual"
                 src="/asset/Visual.svg"
-                width={150}
-                height={150}
+                width={mobile ? 150 : 200}
+                height={mobile ? 150 : 200}
                 className="mb-5"
               />
               <Label className="text-center text-lg font-light">Propmt Keyword Generator</Label>
@@ -64,7 +72,7 @@ const PartnerSection: React.FC = () => {
             </Box>
           </Box>
           <Box className="flex justify-center items-center flex-col p-4 ">
-            <Label className="text-6xl font-light max-w-180 text-end ">
+            <Label className="text-3xl lg:text-6xl font-light max-w-180 text-end ">
               Your AI Partner for Smarter Faster Solutions
             </Label>
             <Box className="mt-10 w-full h-auto">
