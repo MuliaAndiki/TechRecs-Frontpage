@@ -7,8 +7,8 @@ import Square from '@/src/components/svg/square';
 import Box from '@/src/components/ui/Box';
 import Shape from '@/src/components/ui/shape';
 import View from '@/src/components/ui/View';
-import { cn } from '@/src/lib/utils';
 import { useIsMobile } from '@/src/hooks/use-mobile';
+import { cn } from '@/src/lib/utils';
 
 const ArtificialSection = () => {
   const mobile = useIsMobile();
